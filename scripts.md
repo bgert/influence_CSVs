@@ -1,4 +1,7 @@
 loads trials
+
+
+
 '''
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/rmarkbio/rd_speaker_influence/master/Tidy_Clinical_Trials.csv?token=AKOT4ZHTX3ZZCLLAPNVU4M2525LQQ' AS Row CREATE (T:Trial {Primary_NPI: toInteger(Row.NPI), Trial_Name: Row.Trial_Name, Co_investigators: Row.Co_investigators})
 '''
