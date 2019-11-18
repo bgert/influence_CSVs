@@ -1,7 +1,6 @@
 loads trials
 
 
-
 '''
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/rmarkbio/rd_speaker_influence/master/Tidy_Clinical_Trials.csv?token=AKOT4ZHTX3ZZCLLAPNVU4M2525LQQ' AS Row CREATE (T:Trial {Primary_NPI: toInteger(Row.NPI), Trial_Name: Row.Trial_Name, Co_investigators: Row.Co_investigators})
 '''
@@ -16,7 +15,10 @@ Returns Doctors Segmented by State
 MATCH (d:doc), (d2:doc) WHERE EXISTS (d.state) AND EXISTS (d2.state) AND d.state=d2.state CREATE (d)-[:works]->(d2);
 '''
 
+
 Matches Trials with co-authors
+
+
 '''
 MATCH (T:Trial)
 WITH T.Co_investigators as NPI
@@ -35,6 +37,8 @@ MATCH (d:doc), (T:Trial) WHERE d.NPI=T.Primary_NPI CREATE (d)-[:Conducted]->(T);
 '''
 
 Removes all nodes not in a relationship
+
+
 '''
 MATCH (n)
 WHERE size((n)--())=0
