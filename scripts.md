@@ -11,6 +11,8 @@ LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/rmarkbio/rd_speake
 '''
 
 Returns Doctors Segmented by State
+
+
 '''
 MATCH (d:doc), (d2:doc) WHERE EXISTS (d.state) AND EXISTS (d2.state) AND d.state=d2.state CREATE (d)-[:works]->(d2);
 '''
